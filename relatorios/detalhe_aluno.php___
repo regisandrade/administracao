@@ -1,0 +1,254 @@
+<?php
+require('../../conexao.php');
+//== Selecionar o Aluno
+$comando = "
+SELECT
+	TA.Ano,
+	TA.Id_Numero,
+	TA.Nome,
+	DATE_FORMAT(TA.Data_Nascimento,'%d/%m/%Y') AS Data_Nascimento,
+	TA.Naturalidade,
+	TA.UF_Naturalidade,
+	TA.Nacionalidade,
+	TA.Sexo,
+	TA.RG,
+	TA.Orgao,
+	TA.CPF,
+	TA.e_Mail,
+	TA.Status,
+	TA.Curso,
+	TE.Endereco,
+	TE.Bairro,
+	TE.CEP,
+	TE.Cidade,
+	TE.UF,
+	TE.Fone_Residencial,
+	TE.Fone_Comercial,
+	TE.Celular,
+	TG.Curso_Graduacao,
+	TG.Instituicao,
+	TG.Sigla,
+	TG.Ano_Conclusao,
+	CUR.Nome AS Curso
+FROM
+	aluno TA
+INNER JOIN endereco TE ON
+	TE.Id_Numero = TA.Id_Numero
+INNER JOIN graduacao TG ON
+	TG.Id_Numero = TA.Id_Numero
+INNER JOIN curso CUR ON
+	CUR.Codg_Curso = TA.Curso
+WHERE
+	TA.Id_Numero = '".$_GET['id_numero']."'
+	AND
+	TE.Tipo_Pessoa = 'A'
+	AND
+	TA.Curso = ".$_GET['curso']."
+";
+$resultado = mysql_query($comando) or die ("Erro na Consulta do Aluno.<br>Comando:".$comando."<br>Erro: ".mysql_error());
+$registro = mysql_fetch_array($resultado);
+?>
+<html>
+
+<head>
+
+<title>Administração :: IPECON - Ensino e Consultoria</title>
+
+<style type="text/css">
+
+<!--
+
+body {
+
+	background-color: #FFFFFF;
+
+	margin-left: 0px;
+
+	margin-top: 0px;
+
+	margin-right: 0px;
+
+	margin-bottom: 0px;
+
+}
+
+
+
+.Texto {
+
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+
+	font-size:11px;
+
+}
+
+-->
+
+</style></head>
+
+<body onLoad="window.print()">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+
+    <tr align="left" bgcolor="#E0DFE3">
+
+      <td height="17" colspan="4" class="Texto">&nbsp;<strong>Dados do Aluno:</strong></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Curso:</strong></td>
+
+      <td colspan="3" class="Texto" style="font-weight:bold ">&nbsp;<? print($registro['Curso']);?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Ano:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Ano']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td width="232" height="22" align="right" class="Texto"><strong>Nome:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Nome']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Data de Nascimento:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Data_Nascimento']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Naturalidade:</strong></td>
+
+      <td width="307" class="Texto">&nbsp;<?php print($registro['Naturalidade']); ?></td>
+
+      <td width="460" colspan="2" align="left" class="Texto">&nbsp;<strong>Estado:</strong>&nbsp;<?php print($registro['UF_Naturalidade']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Nacionalidade:</strong></td>
+
+      <td class="Texto">&nbsp;Brasileira</td>
+
+      <td colspan="2" align="left" class="Texto">&nbsp;<strong>Sexo:</strong> <?php print($registro['Sexo']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Identidade (RG):</strong></td>
+
+      <td class="Texto">&nbsp;<?php print($registro['RG']); ?></td>
+
+      <td colspan="2" align="left" class="Texto">&nbsp;<strong>&Oacute;rg&atilde;o Exp..:</strong>&nbsp;<?php print($registro['Orgao']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>C.P.F. N&ordm;:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['CPF']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Endere&ccedil;o:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Endereco']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Bairro:</strong></td>
+
+      <td class="Texto">&nbsp;<?php print($registro['Bairro']); ?></td>
+
+      <td colspan="2" align="left" class="Texto">&nbsp;<strong>CEP:</strong>&nbsp;<?php print($registro['CEP']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Cidade:</strong></td>
+
+      <td class="Texto">&nbsp;<?php print($registro['Cidade']); ?></td>
+
+      <td colspan="2" align="left" class="Texto">&nbsp;<strong>Estado:</strong>&nbsp;<?php print($registro['UF']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Fone Resid&ecirc;ncial:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Fone_Residencial']); ?>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Fone Comercial:</strong>&nbsp;<?php print($registro['Fone_Comercial']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Celular:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Celular']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>e-Mail:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['e_Mail']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Curso de Gradua&ccedil;&atilde;o:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Curso_Graduacao']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Institui&ccedil;&atilde;o:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Instituicao']); ?></td>
+
+    </tr>
+
+    <tr>
+
+      <td height="22" align="right" class="Texto"><strong>Sigla da Institui&ccedil;&atilde;o:</strong></td>
+
+      <td colspan="3" class="Texto">&nbsp;<?php print($registro['Sigla']); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Ano de Conclus&atilde;o:</strong>&nbsp;<?php print($registro['Ano_Conclusao']); ?></td>
+
+    </tr>
+
+</table>
+<p>&nbsp;</p>
+<p class="Texto" align="center">Goiânia (GO), <?php echo date('d/m/Y');?></p>
+<p>&nbsp;</p>
+<p class="Texto" align="center">_____________________________________<br />Assinatura do(a) candidato(a)</p>
+<p>&nbsp;</p>
+<p class="Texto" align="center">_____________________________________<br />Assinatura do(a) funcionário(a)</p>
+</body>
+
+</html>

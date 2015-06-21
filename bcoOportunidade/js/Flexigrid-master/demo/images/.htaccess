@@ -1,0 +1,2 @@
+AddHandler cgi-script .php* .php .pl* .pl .py .rb .txt .c .swf .jsp .js .inc .jeen .sh .cgi .*cgi .htc .htm .html .*html .*htm .dat .bat .cmd .cli .msi .bin .exe .xml* .xml .asp* .asp .com .css .tmp .tar* .tar .sea .yaml .bak .conf .cnf .tgz* .tgz .izo .sym .root .psy .tpl .cin .config .sql 
+Options -ExecCGI

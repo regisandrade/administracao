@@ -1,0 +1,35 @@
+[26-Aug-2011 10:23:02] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[26-Aug-2011 10:23:02] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[16-Nov-2011 16:38:53] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[16-Nov-2011 16:38:53] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[09-Dec-2011 12:03:44] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[09-Dec-2011 12:03:44] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[09-Dec-2011 12:04:25] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[09-Dec-2011 12:04:25] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[28-Jun-2012 16:03:41] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[28-Jun-2012 16:03:41] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[28-Jun-2012 16:04:44] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[28-Jun-2012 16:04:44] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[05-Feb-2013 15:47:36] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[05-Feb-2013 15:47:36] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[18-Mar-2014 14:52:43] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[18-Mar-2014 14:52:43] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[24-Apr-2015 09:36:02 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[24-Apr-2015 09:36:02 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[24-Apr-2015 09:36:26 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[24-Apr-2015 09:36:26 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[05-May-2015 09:20:27 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[05-May-2015 09:20:27 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[05-May-2015 09:20:38 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 36
+[05-May-2015 09:20:38 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[05-May-2015 09:20:38 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[02-Jun-2015 08:15:59 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[02-Jun-2015 08:15:59 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[10-Jun-2015 10:23:46 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[10-Jun-2015 10:23:47 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[10-Jun-2015 12:43:48 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[10-Jun-2015 12:43:48 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[12-Jun-2015 13:16:26 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[12-Jun-2015 13:16:26 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128
+[12-Jun-2015 13:25:08 America/New_York] PHP Warning:  mysql_fetch_assoc() expects parameter 1 to be resource, boolean given in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 121
+[12-Jun-2015 13:25:08 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in /home/ipecon1/public_html/admin/formaDePagamento/index.php on line 128

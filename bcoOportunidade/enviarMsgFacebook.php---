@@ -1,0 +1,37 @@
+<?php
+require 'facebook/src/facebook.php';
+
+$facebook = new Facebook(array(
+	'appId'  => '195029563975965',
+	'secret' => 'b05fbe42b24349db2681d61c6c6662b9'
+));    
+
+$user = $facebook->getUser();
+
+if ($user) {
+	$post =  array('message' => $_REQUEST['mensagemFacebook']);
+	$facebook->api('/me/feed', 'POST', $post);
+	$resultado['msgResposta'] = "Mensagem da vaga enviado com sucesso para o Facebook!";
+	$resultado['sucesso'] = true;
+} else {
+	$loginURL = $facebook->getLoginUrl(array('scope' => 'publish_stream'));
+	$resultado['urlErro'] = "<a href=\"".$loginURL."\">";
+	$resultado['msgResposta'] = "Erro ao enviar mensagem para o Facebook.";
+	$resultado['sucesso'] = false;
+}
+
+// verifica a permissao publish_stream
+$permissions = $facebook->api("/me/permissions");
+if(!array_key_exists('publish_stream', $permissions['data'][0])) {
+   header( "Location: " . $facebook->getLoginUrl(array("scope" => "publish_stream")) );
+   exit;
+}
+
+$facebook->api("/me/feed", "post", array(
+          'message' => "Site para desenvolvedores da linguagem PHP",
+          'name' => "Site Oficial do PHP",
+          'link' => "http://www.php.net",
+));
+
+echo json_encode($resultado);
+?>

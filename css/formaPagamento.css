@@ -1,0 +1,25 @@
+body{
+    font: normal 13px Verdana, Arial, Helvetica, sans-serif;
+}
+select{
+    font: normal 13px Verdana, Arial, Helvetica, sans-serif;
+    border: solid 1px #CCCCCC;
+    padding: 3px;
+}
+.texto{
+    font-weight: bold;
+    width: 165px;
+}
+.txtPequeno{
+    font: normal 13px Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    border: solid 1px #CCCCCC;
+    padding: 3px;
+    width: 100px;
+}
+.botao{
+    padding: 3px;
+    margin-top: 5px;
+    font: normal 13px Verdana, Arial, Helvetica, sans-serif;
+    border: solid 1px #CCCCCC;
+}

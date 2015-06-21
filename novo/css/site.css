@@ -1,0 +1,38 @@
+body{
+	margin:0px 10px 10px 10px;
+	font-size:0.8em;
+}
+a:link, a:visited {
+	color: #0000CC;
+	font-weight: normal;
+	text-decoration: none;
+}
+a:hover, a:active {
+	background: #FFFFCC;
+	color: #F00;
+	text-decoration: none;
+}
+h3{
+	margin: 3px;
+}
+#site_home{
+	margin: 32px 0 0 0;
+	width: 718px;
+	text-align: left;
+	border: 1px solid #919b9c;
+	height: 490px;
+	clear: both;
+}
+#conteudo{
+	padding: 0 3px 0 3px;
+	overflow: auto;
+	width: 712px;
+	height: 490px;
+	vertical-align: top;
+}
+#site_rodape{
+	width: 718px;
+	text-align: center;
+	font: normal .75em/1em Verdana, Arial, Helvetica, sans-serif;
+	clear: both;
+}

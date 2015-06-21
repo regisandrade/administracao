@@ -1,0 +1,40 @@
+/* 
+    Document   : bo
+    Created on : 09/10/2012, 22:45:58
+    Author     : Regis
+    Description:
+        Estilos exclusivo do banco de oportunidade
+*/
+
+#tabelaVaga{
+    width: 100%;
+}
+.larguraTd40{
+    width: 40%;
+}
+.larguraTd30{
+    width: 30%;
+}
+.larguraTd20{
+    width: 20%;
+}
+.larguraTd10{
+    width: 10%;
+}
+.larguraTdData { 
+    width: 10%;
+    text-align: center;
+}
+.larguraTdOpcoes { 
+    width: 10%;
+    text-align: center;
+}
+.alturaLinhaTabela{
+    height: 18px;
+}
+#tabelaVaga td{
+    padding: 2px;
+}
+tr.linha:hover{
+    background-color: #FFFF99;
+}

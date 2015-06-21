@@ -1,0 +1,5 @@
+[09-Jun-2014 12:45:10] PHP Warning:  mysql_num_rows(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/relatorios/boletosEmitidos.php on line 74
+[09-Jun-2014 12:45:13] PHP Warning:  mysql_num_rows(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/relatorios/boletosEmitidos.php on line 74
+[12-Aug-2014 12:31:15] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
+[12-Aug-2014 12:31:34] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
+[28-Aug-2014 16:48:46] PHP Warning:  mysql_num_rows(): supplied argument is not a valid MySQL result resource in /home/ipecon1/public_html/admin/relatorios/boletosEmitidos.php on line 74

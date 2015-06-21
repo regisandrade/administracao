@@ -1,0 +1,280 @@
+<?php
+define('FPDF_FONTPATH','../fpdf/font/');
+require('../fpdf/fpdf.php');
+
+header('Content-Type: text/html; charset=ISO-8859-1');
+
+class detalhesAluno extends FPDF
+{
+    private $codgTurma;
+    
+	// Cabecalho
+	function Header()
+	{
+		$this->Image('../imagens/ipeconPdf.jpg',90,5,25);
+		$this->SetFont('arial','',12);
+        if($_REQUEST['curso'] != 24){
+            $this->Image('../imagens/catolicaPdf.jpg',170,5,35);
+  			$this->Cell(195,4,'PUC GOIÁS', 0, 1, 'C');
+			$this->Cell(195,4,'PRO-REITORIA DE PÓS-GRADUAÇÃO E PESQUISA', 0, 1, 'C');
+			$this->Cell(195,4,'COORDENAÇÃO DE PÓS-GRADUAÇÃO LATO SENSU', 0, 1, 'C');
+        }        
+        $this->Cell(195,4,'IPECON - ENSINO E CONSULTORIA', 0, 1, 'C');
+		$this->Ln(4);
+		$this->SetFont('arial','B',12);
+		$this->Cell(195,4,'FICHA DE INSCRIÇÃO', 0, 1, 'C');
+		$this->Ln(8);
+	}// Fim cabecalho
+
+	// Sobre o corpo do relatorio
+	function Body(){
+                require('../../conexao.php');
+		
+		$comando = "
+		SELECT
+			DATE_FORMAT(TA.Data_Cadastro,'%d/%m/%Y') AS DataPreMatricula,
+			TA.Ano,
+			TA.Id_Numero,
+			TA.Nome,
+			DATE_FORMAT(TA.Data_Nascimento,'%d/%m/%Y') AS Data_Nascimento,
+			TA.Naturalidade,
+			TA.UF_Naturalidade,
+			TA.Nacionalidade,
+			TA.Sexo,
+			TA.RG,
+			TA.Orgao,
+			TA.CPF,
+			TA.e_Mail,
+			TA.Status,
+			TA.Curso,
+			TE.Endereco,
+			TE.Bairro,
+			TE.CEP,
+			TE.Cidade,
+			TE.UF,
+			TE.Fone_Residencial,
+			TE.Fone_Comercial,
+			TE.Celular,
+			TG.Curso_Graduacao,
+			TG.Instituicao,
+			TG.Sigla,
+			TG.Ano_Conclusao,
+			CUR.Nome AS Curso,
+            TA.estadoCivil, 
+            TA.tituloEleitoral
+		FROM
+			aluno TA
+		INNER JOIN endereco TE ON
+			TE.Id_Numero = TA.Id_Numero
+		INNER JOIN graduacao TG ON
+			TG.Id_Numero = TA.Id_Numero
+		INNER JOIN curso CUR ON
+			CUR.Codg_Curso = TA.Curso
+		WHERE
+			TA.Id_Numero = '".$_REQUEST['id_numero']."'
+			AND
+			TE.Tipo_Pessoa = 'A'
+			AND
+			TA.Curso = ".$_REQUEST['curso']."
+		";
+        // GP004
+		$resultado = mysql_query($comando) or die ("Erro na Consulta do Aluno.<br>Comando:".$comando."<br>Erro: ".mysql_error());
+		$registro = mysql_fetch_array($resultado);
+
+        // Codigo da turma de Marketing = GP004
+        $this->codgTurma = $registro['CodgTurma'];
+
+        $this->AddPage();
+
+		$this->SetFont('arial','B',10);
+		$largura = 130;
+		if($_REQUEST['curso'] != 24){
+			$this->Cell(60,7,"CURSO DE ESPECIALIZAÇÃO EM: ", 0, 0, 'L');
+		}else{
+			$this->Cell(15,7,"CURSO: ", 0, 0, 'L');
+			$largura = 165;
+		}
+		$this->Cell($largura,7,$registro['Curso'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(42,7,"DATA PRÉ-MATRÍCULA: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(148,7,$registro['DataPreMatricula'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(10,7,"ANO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(180,7,$registro['Ano'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(12,7,"NOME: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(178,7, $registro['Nome'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(42,7,"DATA DE NASCIMENTO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(148,7,$registro['Data_Nascimento'], 0, 1, 'L');
+
+        if($_REQUEST['curso'] == 5 && $this->codgTurma > 'GP004'){
+            $this->SetFont('arial','B',10);
+            $this->Cell(42,7,"ESTADO CIVIL: ", 0, 0, 'L');
+            $this->SetFont('arial','',10);
+            $this->Cell(148,7,$registro['estadoCivil'], 0, 1, 'L');
+        }
+
+		$this->SetFont('arial','B',10);
+		$this->Cell(32,7,"NATURALIDADE: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(100,7,$registro['Naturalidade'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(18,7,'ESTADO: ', 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['UF_Naturalidade'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(32,7,"NACIONALIDADE: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(100,7,$registro['Nacionalidade'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(18,7,'SEXO: ', 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,($registro['Sexo'] == 'M' ? 'Masculino' : 'Feminino'), 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(48,7,"CARTEIRA DE IDENTIDADE: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(76,7,$registro['RG'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(26,7,"ORGÃO EXP.: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['Orgao'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(12,7,"C.P.F.: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(178,7,$registro['CPF'], 0, 1, 'L');
+		
+        if($_REQUEST['curso'] == 5 && $this->codgTurma > 'GP004'){
+            $this->SetFont('arial','B',10);
+            $this->Cell(42,7,"TÍTULO ELEITORAL: ", 0, 0, 'L');
+            $this->SetFont('arial','',10);
+            $this->Cell(148,7,$registro['tituloEleitoral'], 0, 1, 'L');
+
+            $this->SetFont('arial','B',10);
+            $this->Cell(42,7,"RESERVISTA: ", 0, 0, 'L');
+            $this->SetFont('arial','',10);
+            $this->Cell(148,7,$registro['reservista'], 0, 1, 'L');
+
+            $this->SetFont('arial','B',10);
+            $this->Cell(42,7,"NOME DO PAI: ", 0, 0, 'L');
+            $this->SetFont('arial','',10);
+            $this->Cell(148,7,$registro['filiacaoPai'], 0, 1, 'L');
+
+            $this->SetFont('arial','B',10);
+            $this->Cell(42,7,"NOME DA MÃE: ", 0, 0, 'L');
+            $this->SetFont('arial','',10);
+            $this->Cell(148,7,$registro['filiacaoMae'], 0, 1, 'L');
+        }
+
+        $this->SetFont('arial','B',10);
+		$this->Cell(22,7,"ENDEREÇO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(168,7, $registro['Endereco'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(16,7,"BAIRRO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(119,7, $registro['Bairro'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(15,7,"CEP: ", 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['CEP'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(15,7,"CIDADE: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(115,7, $registro['Cidade'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(20,7,"ESTADO: ", 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['UF'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(37,7,"FONE RESIDÊNCIAL: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(77,7,$registro['Fone_Residencial'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(36,7,"FONE COMERCIAL: ", 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['Fone_Comercial'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(19,7,"CELULAR: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(102,7,$registro['Celular'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(29,7,"E-MAIL: ", 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['e_Mail'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(45,7,"CURSO DE GRADUAÇÃO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(145,7, $registro['Curso_Graduacao'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(24,7,"INSTITUIÇÃO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(166,7, $registro['Instituicao'], 0, 1, 'L');
+		
+		$this->SetFont('arial','B',10);
+		$this->Cell(43,7,"SIGLA DA INSTITUIÇÃO: ", 0, 0, 'L');
+		$this->SetFont('arial','',10);
+		$this->Cell(67,7,$registro['Sigla'], 0, 0, 'L');
+		$this->SetFont('arial','B',10);
+		$this->Cell(40,7,"ANO DE CONCLUSÃO: ", 0, 0, 'R');
+		$this->SetFont('arial','',10);
+		$this->Cell(40,7,$registro['Ano_Conclusao'], 0, 1, 'L');
+		
+		$this->Ln(15);
+		$this->SetFont('arial','',10);
+		$this->Cell(190,6,"GOIÂNIA(GO), ".date('d/m/Y'), 0, 1, 'C');
+		$this->Ln(15);
+		
+		$this->SetFont('arial','',10);
+		$this->Cell(190,4,"______________________________________", 0, 1, 'C');
+		$this->Cell(190,4,"ASSINATURA DO(A) CANDIDATO(A)", 0, 1, 'C');
+		$this->Ln(15);
+		
+		$this->SetFont('arial','',10);
+		$this->Cell(190,4,"______________________________________", 0, 1, 'C');
+		$this->Cell(190,4,"ASSINATURA DO(A) FUNCIONÁRIO(A)", 0, 1, 'C');
+		
+	}// Fim corpo
+
+	// Rodape
+	function Footer()
+	{
+		$this->SetY(-15);
+		$this->Cell(190,4,' ', 'B', 1);
+		$this->SetFont('arial','',7);
+		$this->Cell(190,4,'IPECON - Ensino e Treinamento', 0, 1, 'C');
+
+		if($_REQUEST['curso'] != 24){
+			$this->Cell(190,4,'Sua pós-graduação com qualidade.', 0, 1, 'C');
+		}		
+	}// Fim rodape
+	
+}// Fim da classe
+
+$pdf = new detalhesAluno('P','mm','A4'); // Cria um arquivo novo tipo carta, na vertical.
+$pdf->Open(); // inicia documento
+//$pdf->AliasNbPages(); //numeracao automatica de paginas
+$pdf->SetLeftMargin(5);
+$pdf->SetTopMargin(25);
+$pdf->SetAuthor("Regis Andrade"); // Define o autor
+$pdf->Body();
+$pdf->Output();
+
+?>

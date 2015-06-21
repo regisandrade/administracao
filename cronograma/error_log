@@ -1,0 +1,4 @@
+[19-Aug-2013 14:07:01] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
+[19-Aug-2013 14:07:08] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
+[19-Aug-2013 14:07:12] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
+[19-Aug-2013 14:07:14] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/ipecon1/public_html/conexao.php on line 9
